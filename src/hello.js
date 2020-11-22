@@ -13,3 +13,8 @@ app.get('/hello', async (req, res) => {
   const word = req.query.w;
   res.send(`Hello, you enetered ${word}`);
 });
+
+app.get('/bye', async (req, res) => {
+  const word = req.query.b;
+  res.send(`Bye, you enetered ${word}`);
+});

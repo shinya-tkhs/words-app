@@ -15,7 +15,7 @@
     "simulate": "yarn build & firebase emulators:start --only functions",
     "config:set:emulator": "firebase functions:config:get > .runtimeconfig.json",
     "deploy": "firebase deploy --only functions",
-    "hello": "node ./src/hello.js"
+    "hello": "node ./hello.js"
   },
   "engines": {
     "node": "12"
