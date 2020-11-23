@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const { Translate } = require('@google-cloud/translate').v2;
 const translateClient = new Translate();
+const knex = require('./database');
 
 app.use(express.static(__dirname + '/public'));
 
@@ -19,6 +20,15 @@ app.get('/hello', async (req, res) => {
 app.get('/bye', async (req, res) => {
   const word = req.query.b;
   res.send(`Bye, you enetered ${word}`);
+});
+
+app.get('/words', async (req, res) => {
+  try {
+    const words = await knex.select('*').from('words').orderBy('id');
+    res.json({ status: 'ok', data: [...words] });
+  } catch (err) {
+    console.error(err);
+  }
 });
 
 app.get('/translate/:lang', async (req, res) => {
